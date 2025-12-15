@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Сравнение | Дорестайлинг vs Рестайлинг</title>
+    <meta name="description"
+        content="Сравните модели BMW до и после рестайлинга. Подробный анализ различий между дорестайлинговыми и рестайлинговыми версиями.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bmw-blue: #1c69d4;
+            --bmw-blue-dark: #0653b6;
+            --bmw-blue-light: #4a90e2;
+            --bmw-red: #e31837;
+            --bmw-m-gradient: linear-gradient(90deg, #1c69d4 0%, #e31837 50%, #1c69d4 100%);
+            --dark-bg: #060608;
+            --dark-surface: #0c0c10;
+            --dark-elevated: #121218;
+            --card-bg: rgba(18, 18, 24, 0.95);
+            --card-bg-light: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --accent-gradient: linear-gradient(135deg, var(--bmw-blue) 0%, #2d7ff9 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-bg-hover: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-hover: rgba(255, 255, 255, 0.15);
+            --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.4);
+            --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --shadow-glow-blue: 0 0 40px rgba(28, 105, 212, 0.3);
+            --shadow-glow-red: 0 0 40px rgba(227, 24, 55, 0.2);
+            --radius-xs: 6px;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition-fast: 0.15s ease;
+            --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bg-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-orbs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb:nth-child(1) {
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(28, 105, 212, 0.5) 0%, transparent 70%);
+            top: -300px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb:nth-child(2) {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(227, 24, 55, 0.35) 0%, transparent 70%);
+            top: 40%;
+            right: -200px;
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+
+        .bg-orb:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(28, 105, 212, 0.3) 0%, transparent 70%);
+            bottom: -150px;
+            left: 25%;
+            animation-delay: -10s;
+            animation-duration: 22s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(40px, -40px) scale(1.08);
+            }
+
+            50% {
+                transform: translate(-30px, 30px) scale(0.92);
+            }
+
+            75% {
+                transform: translate(25px, 15px) scale(1.04);
+            }
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(6, 6, 8, 0.85);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0 24px;
+            transition: var(--transition-medium);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--bmw-blue) 50%, transparent 100%);
+            opacity: 0.5;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 76px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            color: white;
+            letter-spacing: -0.5px;
+            box-shadow: 0 4px 20px rgba(28, 105, 212, 0.4);
+            transition: var(--transition-medium);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: var(--shadow-glow-blue);
+            border-color: rgba(28, 105, 212, 0.5);
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            background: linear-gradient(135deg, var(--bmw-blue-light) 0%, #2d7ff9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-link {
+            padding: 12px 22px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-medium);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: var(--glass-bg-hover);
+            color: white;
+        }
+
+        .nav-link.active {
+            background: var(--bmw-blue);
+            color: white;
+            box-shadow: 0 4px 20px rgba(28, 105, 212, 0.5);
+        }
+
+        .hero {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+            padding: 100px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(28, 105, 212, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(227, 24, 55, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(28, 105, 212, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, var(--dark-surface) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(28, 105, 212, 0.1);
+            border: 1px solid rgba(28, 105, 212, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--bmw-blue-light);
+            font-weight: 600;
+            margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-medium);
+        }
+
+        .hero-badge:hover {
+            background: rgba(28, 105, 212, 0.15);
+            border-color: rgba(28, 105, 212, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--bmw-blue);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--bmw-blue);
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 10px var(--bmw-blue);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.3);
+                box-shadow: 0 0 20px var(--bmw-blue);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--bmw-blue-light) 0%, var(--bmw-blue) 50%, #2d7ff9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            padding-top: 20px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--bmw-blue-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+        }
+
+        .main {
+            flex: 1;
+            background: linear-gradient(180deg, var(--dark-surface) 0%, var(--dark-bg) 100%);
+            padding: 60px 24px 100px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .selection-panel {
+            background: var(--dark-elevated);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 40px 48px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--glass-border);
+            max-width: 900px;
+            margin: -40px auto 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            position: relative;
+            z-index: 10;
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+
+        .selection-panel::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: var(--bmw-m-gradient);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 640px) {
+            .selection-panel {
+                grid-template-columns: 1fr;
+                padding: 28px;
+                margin: -30px 16px 40px;
+            }
+        }
+
+        .selection-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .selection-group.hidden {
+            display: none;
+        }
+
+        .selection-label {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .selection-label::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--bmw-blue);
+            border-radius: 50%;
+        }
+
+        .selection-select {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            border: 2px solid var(--glass-border);
+            background: var(--dark-surface);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition-medium);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%234a90e2' d='M7 10L2 5h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+        }
+
+        .selection-select:hover {
+            border-color: var(--bmw-blue);
+            background-color: rgba(28, 105, 212, 0.08);
+            box-shadow: var(--shadow-glow-blue);
+        }
+
+        .selection-select:focus {
+            outline: none;
+            border-color: var(--bmw-blue);
+            box-shadow:
+                0 0 0 4px rgba(28, 105, 212, 0.2),
+                var(--shadow-glow-blue);
+        }
+
+        .selection-select option {
+            background: var(--dark-bg);
+            color: white;
+            padding: 16px;
+        }
+
+        .selection-select:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 1024px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        .card {
+            background: var(--dark-elevated);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            box-shadow: var(--shadow-strong);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--glass-border);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--glass-border-hover);
+        }
+
+        .card.pre-facelift {
+            background: linear-gradient(180deg, var(--dark-elevated) 0%, rgba(102, 126, 234, 0.03) 100%);
+        }
+
+        .card.pre-facelift:hover {
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .card.facelift {
+            background: linear-gradient(180deg, var(--dark-elevated) 0%, rgba(28, 105, 212, 0.03) 100%);
+        }
+
+        .card.facelift:hover {
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(28, 105, 212, 0.2);
+            border-color: rgba(28, 105, 212, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover::before {
+            height: 4px;
+            box-shadow: 0 0 20px rgba(28, 105, 212, 0.5);
+        }
+
+        .card.pre-facelift::before {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card.pre-facelift:hover::before {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .card.facelift::before {
+            background: var(--accent-gradient);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .card.pre-facelift .card-header::after {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .card.pre-facelift .card-title {
+            background: linear-gradient(135deg, #667eea 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card.facelift .card-title {
+            background: linear-gradient(135deg, var(--bmw-blue-light) 0%, #2d7ff9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .image-gallery {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .image-gallery.has-two {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .image-wrapper {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .car-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-medium);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+
+        .car-image:hover {
+            transform: scale(1.03);
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.4),
+                0 0 0 2px rgba(28, 105, 212, 0.4);
+            border-color: var(--bmw-blue);
+        }
+
+        .interior-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 20px;
+            display: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+
+        .interior-image:hover {
+            transform: scale(1.02);
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 2px rgba(28, 105, 212, 0.4);
+            border-color: var(--bmw-blue);
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 14px 18px;
+            background: rgba(28, 105, 212, 0.08);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--bmw-blue);
+            transition: var(--transition-medium);
+        }
+
+        .section-header:hover {
+            background: rgba(28, 105, 212, 0.12);
+        }
+
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+        }
+
+        .item {
+            padding: 16px 18px;
+            background: var(--dark-surface);
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 3px solid transparent;
+            border: 1px solid var(--glass-border);
+        }
+
+        .item:hover {
+            background: var(--glass-bg-hover);
+            border-left-color: var(--bmw-blue);
+            transform: translateX(6px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--glass-border-hover);
+        }
+
+        .item-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--bmw-blue-light);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-value {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .key-difference {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(28, 105, 212, 0.1) 0%, rgba(28, 105, 212, 0.03) 100%);
+            border-radius: var(--radius-md);
+            border: 2px solid var(--bmw-blue);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .key-difference::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(28, 105, 212, 0.1) 50%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .key-difference:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(28, 105, 212, 0.2);
+        }
+
+        .key-difference-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--bmw-blue);
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .key-difference-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .footer {
+            background: var(--dark-bg);
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 24px 40px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--bmw-m-gradient);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+            color: white;
+            box-shadow: var(--shadow-glow-blue);
+        }
+
+        .footer-logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-medium);
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--bmw-blue);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--bmw-blue-light);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                height: 64px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 70px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                letter-spacing: -1px;
+            }
+
+            .hero-stats {
+                gap: 30px;
+            }
+
+            .hero-stat-value {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 24px;
+                border-radius: var(--radius-lg);
+            }
+
+            .image-gallery.has-two {
+                grid-template-columns: 1fr;
+            }
+
+            .car-image {
+                height: 180px;
+            }
+
+            .footer {
+                padding: 40px 20px 30px;
+            }
+
+            .footer-links {
+                gap: 20px;
+            }
+        }
+
+        .lightbox-modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: var(--bmw-blue);
+            outline: none;
+            transform: rotate(90deg);
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: var(--bmw-blue);
+            outline: none;
+            transform: rotate(90deg);
+        }
+
+        #infoModal {
+            z-index: 1100;
+        }
+
+        .info-modal-container {
+            background: var(--dark-elevated);
+            border: 1px solid var(--glass-border);
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            position: relative;
+            box-shadow: var(--shadow-strong);
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUpFade {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .info-modal-header {
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .info-modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, white 0%, var(--bmw-blue-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-modal-body {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .info-modal-body p {
+            margin-bottom: 16px;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(28, 105, 212, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bmw-blue);
+        }
+
+        .info-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-medium);
+        }
+
+        .info-modal-close:hover {
+            background: rgba(227, 24, 55, 0.2);
+            color: var(--bmw-red);
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="bg-orb"></div>
+        <div class="bg-orb"></div>
+        <div class="bg-orb"></div>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">BMW</div>
+                <div class="logo-text">Сравни<span>Выбери</span>
+                </div>
+            </a>
+            <nav class="nav">
+                <a href="#" class="nav-link active">Сравнение</a>
+                <a href="#" class="nav-link">О проекте</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Удобный инструмент для выбора</div>
+            <h1>Сравните <span>BMW</span> до и после рестайлинга</h1>
+            <p>Детальный анализ различий между дорестайлинговыми и рестайлинговыми версиями популярных моделей BMW</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">2+</div>
+                    <div class="hero-stat-label">Серий</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">3+</div>
+                    <div class="hero-stat-label">Кузовов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+        <div class="container">
+            <div class="selection-panel">
+                <div class="selection-group">
+                    <label class="selection-label" for="seriesSelect">Серия</label>
+                    <select id="seriesSelect" class="selection-select">
+                        <option value="">Выберите серию</option>
+                    </select>
+                </div>
+                <div class="selection-group hidden" id="bodyGroup">
+                    <label class="selection-label" for="bodySelect">Кузов</label>
+                    <select id="bodySelect" class="selection-select" disabled>
+                        <option value="">Выберите кузов</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="displayArea" class="hidden">
+                <div class="comparison-grid" id="comparisonGrid">
+                    <div class="card pre-facelift">
+                        <div class="card-header">
+                            <h2 class="card-title">Дорестайлинг</h2>
+                            <p class="card-subtitle" id="preSubtitle"></p>
+                        </div>
+
+                        <div class="image-gallery has-two">
+                            <img id="imgPreFront" class="car-image" alt="Вид спереди">
+                            <img id="imgPreRear" class="car-image" alt="Вид сзади">
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Внешний вид</h3>
+                            </div>
+                            <div id="preExterior"></div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Салон</h3>
+                            </div>
+                            <img id="imgPreInterior" class="interior-image" alt="Интерьер">
+                            <div id="preInterior"></div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Электроника</h3>
+                            </div>
+                            <div id="preElectronics"></div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Двигатели</h3>
+                            </div>
+                            <div id="preEngines"></div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Надёжность</h3>
+                            </div>
+                            <div id="preReliability"></div>
+                        </div>
+                    </div>
+
+                    <div class="card facelift">
+                        <div class="card-header">
+                            <h2 class="card-title">Рестайлинг (LCI)</h2>
+                            <p class="card-subtitle" id="postSubtitle"></p>
+                        </div>
+
+                        <div class="image-gallery has-two">
+                            <img id="imgPostFront" class="car-image" alt="Вид спереди">
+                            <img id="imgPostRear" class="car-image" alt="Вид сзади">
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Внешний вид</h3>
+                            </div>
+                            <div id="postExterior"></div>
+                            <div class="key-difference">
+                                <div class="key-difference-label">Ключевое отличие</div>
+                                <div class="key-difference-value" id="exteriorKey"></div>
+                            </div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Салон</h3>
+                            </div>
+                            <img id="imgPostInterior" class="interior-image" alt="Интерьер">
+                            <div id="postInterior"></div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Электроника</h3>
+                            </div>
+                            <div id="postElectronics"></div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Двигатели</h3>
+                            </div>
+                            <div id="postEngines"></div>
+                        </div>
+
+                        <div class="section">
+                            <div class="section-header">
+                                <h3 class="section-title">Надёжность</h3>
+                            </div>
+                            <div id="postReliability"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">BMW</div>
+            <span class="footer-logo-text">Сравни<span>Выбери</span></span>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Главная</a>
+                <a href="#" class="footer-link">О проекте</a>
+                <a href="#" class="footer-link">Контакты</a>
+            </div>
+            <p class="footer-copyright">© 2025 BMW Сравнение. Все права защищены. Тестовый проект.</p>
+        </div>
+    </footer>
+
+    <div id="infoModal" class="lightbox-modal">
+        <div class="info-modal-container">
+            <button class="info-modal-close" onclick="closeInfoModal()">&times;</button>
+            <div class="info-modal-header">
+                <h2 class="info-modal-title" id="infoModalTitle">Заголовок</h2>
+            </div>
+            <div class="info-modal-body" id="infoModalBody">
+            </div>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox-modal">
+        <button class="lightbox-close">&times;</button>
+        <img class="lightbox-content" id="lightbox-img" alt="Full size image">
+    </div>
+
+    <script>
+        const bmwSeries = [
+            {
+                id: "series_3",
+                name: "3 Серия",
+                bodies: [
+                    {
+                        id: "f30",
+                        name: "F30 (2011–2019)",
+                        images: {
+                            pre: {
+                                front: "images/f30dorestpered.jpg",
+                                rear: "images/f30dorestzad.jpg",
+                                interior: "images/f30dorestsalon.jpg"
+                            },
+                            post: {
+                                front: "images/f30restpered.jpg",
+                                rear: "images/f30restzad.jpg",
+                                interior: "images/f30restsalon.jpg"
+                            }
+                        },
+                        general: {
+                            preYears: "2011–2015",
+                            preType: "до LCI",
+                            postYears: "2015–2019",
+                            postType: "LCI"
+                        },
+                        exterior: {
+                            pre: [
+                                { label: "Фары", value: "Галоген, ксенон, опция LED" },
+                                { label: "Задние фонари", value: "Ламповые" },
+                                { label: "Бамперы", value: "Ранний дизайн" },
+                                { label: "Освещение", value: "Без LED в базе" }
+                            ],
+                            post: [
+                                { label: "Фары", value: "LED в базе" },
+                                { label: "Задние фонари", value: "LED" },
+                                { label: "Бамперы", value: "Обновлённая форма" },
+                                { label: "Освещение", value: "Полностью LED" }
+                            ],
+                            key: "Полный переход на LED-оптику"
+                        },
+                        interior: {
+                            pre: [
+                                { label: "Приборная панель", value: "Аналоговая" },
+                                { label: "Мультимедиа", value: "iDrive NBT" },
+                                { label: "Селектор КПП", value: "Классический" },
+                                { label: "Материалы", value: "Ранние варианты отделки" }
+                            ],
+                            post: [
+                                { label: "Приборная панель", value: "Аналоговая" },
+                                { label: "Мультимедиа", value: "iDrive NBT / NBT Evo" },
+                                { label: "Селектор КПП", value: "Электронный" },
+                                { label: "Материалы", value: "Обновлённые вставки" }
+                            ]
+                        },
+                        electronics: {
+                            pre: [
+                                { label: "Ассистенты", value: "Базовый набор" },
+                                { label: "Комфорт", value: "Стандартные опции" },
+                                { label: "Безопасность", value: "ESP, подушки безопасности" }
+                            ],
+                            post: [
+                                { label: "Ассистенты", value: "Расширенные системы помощи" },
+                                { label: "Комфорт", value: "Улучшенная мультимедиа" },
+                                { label: "Безопасность", value: "Дополнительные электронные системы" }
+                            ]
+                        },
+                        engines: {
+                            pre: [
+                                { label: "Двигатели", value: "N20, N47, B47" },
+                                { label: "Коробки передач", value: "6MT, 8AT ZF" },
+                                { label: "Экостандарт", value: "Euro 5" }
+                            ],
+                            post: [
+                                { label: "Двигатели", value: "B38, B48, B47" },
+                                { label: "Коробки передач", value: "6MT, 8AT ZF" },
+                                { label: "Экостандарт", value: "Euro 6" }
+                            ]
+                        },
+                        reliability: {
+                            pre: [
+                                { label: "Характерные проблемы", value: "Цепь ГРМ N47, ТНВД" },
+                                { label: "Особенности", value: "Ранние поколения моторов" }
+                            ],
+                            post: [
+                                { label: "Характерные проблемы", value: "Форсунки B-серии" },
+                                { label: "Особенности", value: "Обновлённая моторная линейка" }
+                            ]
+                        }
+                    }
+                ]
+            },
+
+            {
+                id: "series_5",
+                name: "5 Серия",
+                bodies: [
+                    {
+                        id: "e60",
+                        name: "E60 (2003-2010)",
+                        images: {
+                            pre: {
+                                front: "images/e60dorestpered.jpg",
+                                rear: "images/e60dorestzad.jpg",
+                                interior: "images/e60dorestsalon.jpg"
+                            },
+                            post: {
+                                front: "images/e60restpered.jpg",
+                                rear: "images/e60restzad.jpg",
+                                interior: "images/e60restsalon.jpg"
+                            }
+                        },
+                        general: {
+                            preYears: "2003–2007",
+                            preType: "до LCI",
+                            postYears: "2007–2010",
+                            postType: "LCI"
+                        },
+                        exterior: {
+                            pre: [
+                                { label: "Фары", value: "Ранний дизайн, галоген/ксенон" },
+                                { label: "Задние фонари", value: "Ламповая оптика" },
+                                { label: "Бамперы", value: "Дорестайлинговая форма" },
+                                { label: "Освещение", value: "Галоген, ксенон" }
+                            ],
+                            post: [
+                                { label: "Фары", value: "Обновлённая форма, ксенон" },
+                                { label: "Задние фонари", value: "Изменённый дизайн, LED-элементы" },
+                                { label: "Бамперы", value: "Переработанный дизайн" },
+                                { label: "Освещение", value: "Галоген, ксенон, LED-элементы" }
+                            ],
+                            key: "Задние фонари с LED-графикой"
+                        },
+                        interior: {
+                            pre: [
+                                { label: "Приборная панель", value: "Базовая графика" },
+                                { label: "Мультимедиа", value: "iDrive CCC" },
+                                { label: "Селектор КПП", value: "Механический" },
+                                { label: "Материалы", value: "Стандартная отделка" }
+                            ],
+                            post: [
+                                { label: "Приборная панель", value: "Обновлённая графика" },
+                                { label: "Мультимедиа", value: "iDrive CIC с HDD" },
+                                { label: "Селектор КПП", value: "Электронный (shift-by-wire)" },
+                                { label: "Материалы", value: "Доработанная отделка" }
+                            ]
+                        },
+                        electronics: {
+                            pre: [
+                                { label: "Ассистенты", value: "Базовые системы стабилизации" },
+                                { label: "Комфорт", value: "Ограниченный набор мультимедиа" },
+                                { label: "Безопасность", value: "Стандартные системы" }
+                            ],
+                            post: [
+                                { label: "Ассистенты", value: "Адаптивный круиз, удержание полосы, night vision" },
+                                { label: "Комфорт", value: "Расширенные функции iDrive" },
+                                { label: "Безопасность", value: "Обновлённые алгоритмы DSC" }
+                            ]
+                        },
+                        engines: {
+                            pre: [
+                                { label: "Двигатели", value: "Бензиновые и дизельные серии M" },
+                                { label: "Коробки передач", value: "МКПП, АКПП ZF" },
+                                { label: "Экостандарт", value: "Euro 3–4" }
+                            ],
+                            post: [
+                                { label: "Двигатели", value: "Бензиновые и дизельные серии N" },
+                                { label: "Коробки передач", value: "МКПП, АКПП ZF" },
+                                { label: "Экостандарт", value: "Euro 4–5" }
+                            ]
+                        },
+                        reliability: {
+                            pre: [
+                                { label: "Характерные проблемы", value: "Возрастные узлы, охлаждение, электроника CCC" },
+                                { label: "Особенности", value: "Более простая электронная архитектура" }
+                            ],
+                            post: [
+                                { label: "Характерные проблемы", value: "Электроника CIC, моторы серии N" },
+                                { label: "Особенности", value: "Усложнённая электроника и экология" }
+                            ]
+                        }
+                    },
+                    {
+                        id: "f10",
+                        name: "F10 (2010–2017)",
+                        images: {
+                            pre: {
+                                front: "images/f10dorestpered.jpg",
+                                rear: "images/f10dorestzad.jpg",
+                                interior: "images/f10dorestsalon.jpg"
+                            },
+                            post: {
+                                front: "images/f10restpered.jpg",
+                                rear: "images/f10restzad.jpg",
+                                interior: "images/f10restsalon.jpg"
+                            }
+                        },
+                        general: {
+                            preYears: "2010–2013",
+                            preType: "до LCI",
+                            postYears: "2013–2017",
+                            postType: "LCI"
+                        },
+                        exterior: {
+                            pre: [
+                                { label: "Фары", value: "Ксенон, опция LED" },
+                                { label: "Задние фонари", value: "Ламповые" },
+                                { label: "Бамперы", value: "Дорестайлинговая форма" },
+                                { label: "Освещение", value: "Ксенон, LED опционально" }
+                            ],
+                            post: [
+                                { label: "Фары", value: "LED, адаптивные LED" },
+                                { label: "Задние фонари", value: "LED" },
+                                { label: "Бамперы", value: "Обновлённый дизайн" },
+                                { label: "Освещение", value: "LED в расширенных комплектациях" }
+                            ],
+                            key: "Обновлённая LED-оптика спереди и сзади"
+                        },
+                        interior: {
+                            pre: [
+                                { label: "Приборная панель", value: "Аналоговая" },
+                                { label: "Мультимедиа", value: "iDrive CIC" },
+                                { label: "Селектор КПП", value: "Электронный" },
+                                { label: "Материалы", value: "Базовые варианты отделки" }
+                            ],
+                            post: [
+                                { label: "Приборная панель", value: "Аналоговая" },
+                                { label: "Мультимедиа", value: "iDrive NBT" },
+                                { label: "Селектор КПП", value: "Электронный" },
+                                { label: "Материалы", value: "Обновлённые материалы салона" }
+                            ]
+                        },
+                        electronics: {
+                            pre: [
+                                { label: "Ассистенты", value: "Базовые системы помощи" },
+                                { label: "Комфорт", value: "Стандартные опции" },
+                                { label: "Безопасность", value: "ESP, подушки безопасности" }
+                            ],
+                            post: [
+                                { label: "Ассистенты", value: "Расширенные ассистенты" },
+                                { label: "Комфорт", value: "Улучшенные функции мультимедиа" },
+                                { label: "Безопасность", value: "Дополнительные электронные системы" }
+                            ]
+                        },
+                        engines: {
+                            pre: [
+                                { label: "Двигатели", value: "N20, N52, N55, N47, N57" },
+                                { label: "Коробки передач", value: "6MT, 8AT ZF" },
+                                { label: "Экостандарт", value: "Euro 5" }
+                            ],
+                            post: [
+                                { label: "Двигатели", value: "N20, N55, N47, N57" },
+                                { label: "Коробки передач", value: "6MT, 8AT ZF" },
+                                { label: "Экостандарт", value: "Euro 6" }
+                            ]
+                        },
+                        reliability: {
+                            pre: [
+                                { label: "Характерные проблемы", value: "Цепь ГРМ N47, электроника" },
+                                { label: "Особенности", value: "Ранние версии узлов" }
+                            ],
+                            post: [
+                                { label: "Характерные проблемы", value: "EGR дизелей, электроника" },
+                                { label: "Особенности", value: "Доработанные агрегаты" }
+
+                            ]
+                        }
+                    }
+                ]
+            }
+        ];
+
+        const seriesSelect = document.getElementById('seriesSelect');
+        const bodySelect = document.getElementById('bodySelect');
+        const bodyGroup = document.getElementById('bodyGroup');
+        const displayArea = document.getElementById('displayArea');
+        const comparisonGrid = document.getElementById('comparisonGrid');
+        const imgPreFront = document.getElementById('imgPreFront');
+        const imgPreRear = document.getElementById('imgPreRear');
+        const imgPostFront = document.getElementById('imgPostFront');
+        const imgPostRear = document.getElementById('imgPostRear');
+        const imgPreInterior = document.getElementById('imgPreInterior');
+        const imgPostInterior = document.getElementById('imgPostInterior');
+
+        bmwSeries.forEach(series => {
+            const option = document.createElement('option');
+            option.value = series.id;
+            option.textContent = series.name;
+            seriesSelect.appendChild(option);
+        });
+
+        function createPlaceholder(text, color) {
+            return `data:image/svg+xml,${encodeURIComponent(`<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:${color};stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:${color};stop-opacity:0.7" />
+                    </linearGradient>
+                </defs>
+                <rect width="800" height="500" fill="url(#grad)"/>
+                <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle">${text}</text>
+            </svg>`)}`;
+        }
+
+        function loadImage(imgElement, sources, placeholderText, placeholderColor) {
+            if (!sources || sources.length === 0 || !sources[0]) {
+                imgElement.style.display = 'none';
+                return;
+            }
+
+            let currentIndex = 0;
+
+            function tryNextSource() {
+                if (currentIndex < sources.length) {
+                    imgElement.src = sources[currentIndex];
+                    currentIndex++;
+                } else {
+                    imgElement.src = createPlaceholder(placeholderText, placeholderColor);
+                }
+            }
+
+            imgElement.onerror = tryNextSource;
+            imgElement.onload = () => {
+                imgElement.onerror = null;
+                imgElement.style.display = 'block';
+            };
+
+            imgElement.style.display = 'block';
+            tryNextSource();
+        }
+
+        function createItems(items, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.innerHTML = `<div class="item-label">${item.label}</div><div class="item-value">${item.value}</div>`;
+                container.appendChild(div);
+            });
+        }
+
+        function getSources(mainUrl, bodyId, isPre) {
+            return [mainUrl].filter(Boolean);
+        }
+
+        seriesSelect.addEventListener('change', function () {
+            const selectedId = this.value;
+            bodySelect.innerHTML = '<option value="">Выберите кузов</option>';
+            bodySelect.disabled = true;
+            bodyGroup.classList.add('hidden');
+            displayArea.classList.add('hidden');
+
+            if (selectedId) {
+                const series = bmwSeries.find(s => s.id === selectedId);
+                if (series) {
+                    series.bodies.forEach(body => {
+                        const option = document.createElement('option');
+                        option.value = body.id;
+                        option.textContent = body.name;
+                        bodySelect.appendChild(option);
+                    });
+                    bodySelect.disabled = false;
+                    bodyGroup.classList.remove('hidden');
+                }
+            }
+        });
+
+        bodySelect.addEventListener('change', function () {
+            const seriesId = seriesSelect.value;
+            const bodyId = this.value;
+
+            if (seriesId && bodyId) {
+                const series = bmwSeries.find(s => s.id === seriesId);
+                const body = series?.bodies.find(b => b.id === bodyId);
+
+                if (body) {
+                    const imgData = body.images;
+
+                    loadImage(imgPreFront, getSources(imgData.pre.front, bodyId, true), 'Фото спереди', '#667eea');
+                    loadImage(imgPreRear, getSources(imgData.pre.rear, bodyId, true), 'Фото сзади', '#667eea');
+                    loadImage(imgPostFront, getSources(imgData.post.front, bodyId, false), 'Фото спереди', '#1c69d4');
+                    loadImage(imgPostRear, getSources(imgData.post.rear, bodyId, false), 'Фото сзади', '#1c69d4');
+                    loadImage(imgPreInterior, [imgData.pre.interior], 'Интерьер', '#667eea');
+                    loadImage(imgPostInterior, [imgData.post.interior], 'Интерьер', '#1c69d4');
+
+                    document.getElementById('preSubtitle').textContent = body.general.preYears;
+                    document.getElementById('postSubtitle').textContent = body.general.postYears;
+
+                    createItems(body.exterior.pre, 'preExterior');
+                    createItems(body.exterior.post, 'postExterior');
+                    document.getElementById('exteriorKey').textContent = body.exterior.key;
+
+                    createItems(body.interior.pre, 'preInterior');
+                    createItems(body.interior.post, 'postInterior');
+
+                    createItems(body.electronics.pre, 'preElectronics');
+                    createItems(body.electronics.post, 'postElectronics');
+
+                    createItems(body.engines.pre, 'preEngines');
+                    createItems(body.engines.post, 'postEngines');
+
+                    createItems(body.reliability.pre, 'preReliability');
+                    createItems(body.reliability.post, 'postReliability');
+
+                    displayArea.classList.remove('hidden');
+                }
+            } else {
+                displayArea.classList.add('hidden');
+            }
+        });
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                lightboxImg.src = '';
+            }, 300);
+        }
+
+        const allCarImages = document.querySelectorAll('.car-image, .interior-image');
+        allCarImages.forEach(img => {
+            img.addEventListener('click', function () {
+                if (this.src) {
+                    openLightbox(this.src);
+                }
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) closeLightbox();
+                if (infoModal.classList.contains('active')) closeInfoModal();
+            }
+        });
+
+        const infoModal = document.getElementById('infoModal');
+        const infoTitle = document.getElementById('infoModalTitle');
+        const infoBody = document.getElementById('infoModalBody');
+
+        const modalContent = {
+            about: {
+                title: "О проекте СравниВыбери",
+                body: 
+                `
+                <p>Этот проект находится в тестовом режиме, суть задумки такова, что каждый, кто планирует или собирается купить BMW, может выбрать и сравнить поколения одного кузова.</p>
+                <p>Я собираю детальную информацию о визуальных и технических изменениях, чтобы помочь вам сделать правильный выбор при покупке автомобиля.</p>
+                <p>Сайт является независимым проектом и не связан с BMW AG. Вся информация собрана из открытых источников и опыта сообщества.</p>
+                `
+            },
+            contacts: {
+                title: "Мои контакты",
+                body: `
+                    <p>Я всегда на связи! Выберите удобный способ для общения:</p>
+                    <ul class="contact-list">
+                         <li class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <span>+7 (XXX) XXX-XX-XX (Рабочий)</span>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">WA</div>
+                            <span>+7 (XXX) XXX-XX-XX (WhatsApp)</span>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">TG</div>
+                            <span>@ddosmakhanov</span>
+                        </li>
+                        <li class="contact-item">
+                            <div class="contact-icon">@</div>
+                            <span>info@ddosmakhanov@gmail.com</span>
+                        </li>
+                    </ul>
+                `
+            }
+        };
+
+        function openInfoModal(type) {
+            const content = modalContent[type];
+            if (content) {
+                infoTitle.textContent = content.title;
+                infoBody.innerHTML = content.body;
+                infoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeInfoModal() {
+            infoModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        infoModal.addEventListener('click', function (e) {
+            if (e.target === infoModal) closeInfoModal();
+        });
+
+        document.querySelectorAll('a[href="#"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const text = this.textContent.trim().toLowerCase();
+
+                if (text.includes('о проекте')) {
+                    openInfoModal('about');
+                } else if (text.includes('контакты')) {
+                    openInfoModal('contacts');
+                } else if (text.includes('сравнение') || text.includes('сравни') || text.includes('главная')) {
+                    const target = document.querySelector('.main');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
